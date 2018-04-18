@@ -823,7 +823,8 @@ public class BluetoothMusicModule extends BaseModule<BluetoothMusicStateListener
     };
 
 //    protected Handler mHandler = "tcc897xpm01v2".equals(SystemProperties.get("ro.product.device")) ? mHandlerFake : mHandlerReal;
-    protected Handler mHandler = mHandlerFake;
+    protected Handler mHandler = mHandlerReal;
+//    protected Handler mHandler = mHandlerFake;
 
 
     private void playItem(byte scope, BluetoothAvrcpBrowseItem item) {

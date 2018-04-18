@@ -47,7 +47,6 @@ package com.etrans.jt.bluetooth.receiver;
 
 import android.app.Notification;
 import android.app.NotificationManager;
-import android.app.PendingIntent;
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothProfile;
 import android.content.BroadcastReceiver;
@@ -60,7 +59,6 @@ import android.util.Log;
 
 import com.broadcom.bt.avrcp.BluetoothAvrcpController;
 import com.etrans.jt.bluetooth.R;
-import com.etrans.jt.bluetooth.view.MusicActivity;
 import com.etrans.jt.btlibrary.utils.Constants;
 
 
@@ -130,15 +128,37 @@ public class AvrcpBroadcastReceiver extends BroadcastReceiver {
     /**
      * This function is called to send notification to NotificationManager
      */
+//    private void showNotification(int icon, Context context) {
+//        Log.d(TAG, "showNotification: notification sent.." + mDeviceAddress);
+//        Notification notification = new Notification(icon, "", System.currentTimeMillis());
+//        Intent notificationIntent = new Intent(context, MusicActivity.class);
+//        notificationIntent.putExtra(AVRCP_TG_NAME, mDeviceName);
+//        notificationIntent.putExtra(AVRCP_TG_ADDRESS, mDeviceAddress);
+//        PendingIntent contentIntent = PendingIntent.getActivity(context, 0, notificationIntent,
+//                PendingIntent.FLAG_CANCEL_CURRENT);
+//        notification.setLatestEventInfo(context, "Connected to", mDeviceName, contentIntent);
+//        mNotificationManager.notify(AVRCP_NOTIFICATION_ID, notification);
+//    }
+    //测试
+    /**
+     * This function is called to send notification to NotificationManager
+     */
     private void showNotification(int icon, Context context) {
         Log.d(TAG, "showNotification: notification sent.." + mDeviceAddress);
-        Notification notification = new Notification(icon, "", System.currentTimeMillis());
-        Intent notificationIntent = new Intent(context, MusicActivity.class);
-        notificationIntent.putExtra(AVRCP_TG_NAME, mDeviceName);
-        notificationIntent.putExtra(AVRCP_TG_ADDRESS, mDeviceAddress);
-        PendingIntent contentIntent = PendingIntent.getActivity(context, 0, notificationIntent,
-                PendingIntent.FLAG_CANCEL_CURRENT);
-        notification.setLatestEventInfo(context, "Connected to", mDeviceName, contentIntent);
-        mNotificationManager.notify(AVRCP_NOTIFICATION_ID, notification);
+//        Notification notification = new Notification(icon, "", System.currentTimeMillis());
+//        Intent notificationIntent = new Intent(context, MusicActivity.class);
+//        notificationIntent.putExtra(AVRCP_TG_NAME, mDeviceName);
+//        notificationIntent.putExtra(AVRCP_TG_ADDRESS, mDeviceAddress);
+//        PendingIntent contentIntent = PendingIntent.getActivity(context, 0, notificationIntent,
+//                PendingIntent.FLAG_CANCEL_CURRENT);
+//        notification.setLatestEventInfo(context, "Connected to", mDeviceName, contentIntent);
+
+        Notification noti = new Notification.Builder(context)
+                .setContentTitle(mDeviceName)
+                .setContentText(mDeviceAddress)
+                .setSmallIcon(icon)
+                .build();
+//        mNotificationManager.notify(AVRCP_NOTIFICATION_ID, notification);
+        mNotificationManager.notify(AVRCP_NOTIFICATION_ID, noti);
     }
 }
