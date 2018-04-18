@@ -1,0 +1,16 @@
+﻿<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="app_name">btlibrary</string>
+    <string name="durationformatshort" translatable="false">
+        <xliff:g id="format">%2$d:%5$02d</xliff:g>
+    </string>
+    <!-- Duration format for duration >= 1 hour -->
+    <string name="durationformatlong" translatable="false">
+        <xliff:g id="format">%1$d:%3$02d:%5$02d</xliff:g>
+    </string>
+
+    <string name="bt_no_connect">BT 연결이 끊겼습니다</string>
+    <string name="bt_connected">연결됨 : </string>
+    <string name="bt_Please_connect_bt">BT연결되어 있지 않습니다. BT를 연결하세요！</string>
+    <string name="bt_Downloading">다운로드...</string>
+
+</resources>

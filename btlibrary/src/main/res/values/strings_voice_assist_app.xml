@@ -1,0 +1,120 @@
+<resources>
+    <!-- 语音助理应用通配字符串 -->
+    <string-array name="voice_app_music">
+        <item>音乐</item>
+        <item>音频</item>
+        <item>music</item>
+    </string-array>
+    <string-array name="voice_app_radio">
+        <item>收音机</item>
+        <item>收音</item>
+        <item>FM</item>
+        <item>fm</item>
+        <item>AM</item>
+        <item>am</item>
+        <item>am广播</item>
+        <item>fm广播</item>
+        <item>AM广播</item>
+        <item>FM广播</item>
+        <item>广播</item>
+        <item>fm收音机</item>
+        <item>am收音机</item>
+        <item>FM收音机</item>
+        <item>AM收音机</item>
+    </string-array>
+    <string-array name="voice_app_nav">
+        <item>地图</item>
+        <item>导航</item>
+        <item>畅e行</item>
+        <item>畅易行</item>
+        <item>畅E行</item>
+        <item>易行</item>
+    </string-array>
+    <string-array name="voice_app_video">
+        <item>视频</item>
+        <item>电影</item>
+        <item>电视剧</item>
+    </string-array>
+    <string-array name="voice_app_tel">
+        <item>电话</item>
+        <item>拨号</item>
+        <item>手机</item>
+        <item>蓝牙电话</item>
+    </string-array>
+
+    <string-array name="voice_app_filter">
+        <item>短信</item>
+        <item>Message</item>
+    </string-array>
+
+    <string-array name="voice_app_weather">
+        <item>天气</item>
+        <item>weather</item>
+    </string-array>
+
+    <string-array name="voice_app_fans">
+        <item>豆粉圈</item>
+    </string-array>
+
+    <string-array name="voice_app_douBan">
+        <item>豆拌</item>
+    </string-array>
+
+    <string-array name="voice_app_bluetooth">
+        <item>蓝牙</item>
+    </string-array>
+
+    <string-array name="voice_app_sos">
+        <item>sos</item>
+        <item>SOS</item>
+    </string-array>
+
+    <string-array name="voice_app_severPhone">
+        <item>服务电话</item>
+    </string-array>
+    <string-array name="voice_app_web">
+        <item>浏览器</item>
+    </string-array>
+
+    <string-array name="voice_app_store">
+        <item>应用商店</item>
+        <item>商店</item>
+    </string-array>
+
+    <string-array name="voice_app_img">
+        <item>图片</item>
+        <item>picture</item>
+    </string-array>
+
+    <string-array name="voice_app_calendar">
+        <item>日历</item>
+    </string-array>
+
+    <string-array name="voice_app_calculator">
+        <item>计算器</item>
+    </string-array>
+
+    <string-array name="voice_app_file">
+        <item>文件管理</item>
+        <item>文件管理器</item>
+    </string-array>
+
+    <string-array name="voice_app_set">
+        <item>系统设置</item>
+        <item>设置</item>
+    </string-array>
+
+    <string-array name="voice_app_more">
+        <item>更多</item>
+    </string-array>
+
+    <string-array name="voice_app_operator_launch">
+        <item>launch</item>
+        <item>open</item>
+    </string-array>
+    <string-array name="voice_app_operator_close">
+        <item>close</item>
+    </string-array>
+
+
+</resources>

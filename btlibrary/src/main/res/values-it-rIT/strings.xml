@@ -1,0 +1,7 @@
+﻿<resources>
+
+    <string name="bt_unconnected">BT non si è connesso</string>
+    <string name="bt_connected">Collegato : </string>
+    <string name="bt_Please_connect_bt">Si prega di connettersi al BT！</string>
+    <string name="bt_Downloading">Sta scaricando</string>
+</resources>

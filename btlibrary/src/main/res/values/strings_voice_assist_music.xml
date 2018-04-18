@@ -1,0 +1,62 @@
+ <resources>
+     
+	 	<string-array name="voice_ctrl_music_play">
+	        <item>播放</item>
+	        <item>play</item>
+	    </string-array>
+	    
+	    <string-array name="voice_ctrl_music_pause">
+	        <item>暂停</item>
+	        <item>pause</item>
+	    </string-array>
+	    
+	    <string-array name="voice_ctrl_music_stop">
+	        <item>停止</item>
+	        <item>stop</item>
+	        <item>exitplayer</item>
+	    </string-array>
+	    
+	    <string-array name="voice_ctrl_music_next">
+	        <item>下一首</item>
+	        <item>next</item>
+	    </string-array>
+	    
+	    <string-array name="voice_ctrl_music_prev">
+	        <item>上一首</item>
+	        <item>previous</item>
+	    </string-array>
+	    
+	    <string-array name="voice_ctrl_music_cycle">
+	        <item>顺序循环</item>
+	        <item >order</item>
+	    </string-array>
+	    
+	    <string-array name="voice_ctrl_music_singlecycle">
+	        <item>单曲循环</item>
+	        <item >single_loop</item>
+	    </string-array>
+	    
+	    <string-array name="voice_ctrl_music_random">
+	        <item>随机播放</item>
+	        <item >random</item>
+	    </string-array>
+	    
+	    <string-array name="voice_ctrl_volume_mute">
+	        <item>静音</item>
+	         <item>mute</item>
+	    </string-array>
+	    
+	    <string-array name="voice_ctrl_volume_open">
+	        <item>打开音量</item>
+	    </string-array>
+	    
+	    <string-array name="voice_ctrl_volume_more">
+	        <item>音量+</item>
+	        <item>volume_up</item>
+	    </string-array>
+	    
+	    <string-array name="voice_ctrl_volume_less">
+	        <item>音量-</item>
+	        <item>volume_down</item>
+	    </string-array>
+</resources>

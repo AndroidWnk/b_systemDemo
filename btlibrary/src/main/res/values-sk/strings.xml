@@ -1,0 +1,8 @@
+<resources>
+
+    <string name="bt_unconnected">Odpojené</string>
+    <string name="bt_connected">Pripojený : </string>
+    <string name="bt_Please_connect_bt">Pripojte prosím BT!</string>
+    <string name="bt_Downloading">Preberanie kontaktov</string>
+
+</resources>
