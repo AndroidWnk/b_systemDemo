@@ -222,21 +222,21 @@ public abstract class BaseActivity extends Activity implements XxBaseModule.IUpd
         if (status == TelephonyManager.SIM_STATE_READY) {
             boolean mobileDataStatus = manager.getMobileDataState(null);
             int type = manager.getMobileType();
-            if (mobileDataStatus && type != TelephonyManager.NETWORK_CLASS_UNKNOWN) {
+            if (mobileDataStatus && type != 1) {
 
-                switch (type) {
-                    case TelephonyManager.NETWORK_CLASS_2_G:
-                        mMobileType.setBackgroundResource(R.drawable.icon_mobile_type_2g);
-                        break;
-                    case TelephonyManager.NETWORK_CLASS_3_G:
-                        mMobileType.setBackgroundResource(R.drawable.icon_mobile_type_3g);
-                        break;
-                    case TelephonyManager.NETWORK_CLASS_4_G:
-                        mMobileType.setBackgroundResource(R.drawable.icon_mobile_type_4g);
-                        break;
-                    default:
-                        break;
-                }
+//                switch (type) {
+//                    case TelephonyManager.NETWORK_CLASS_2_G:
+//                        mMobileType.setBackgroundResource(R.drawable.icon_mobile_type_2g);
+//                        break;
+//                    case TelephonyManager.NETWORK_CLASS_3_G:
+//                        mMobileType.setBackgroundResource(R.drawable.icon_mobile_type_3g);
+//                        break;
+//                    case TelephonyManager.NETWORK_CLASS_4_G:
+//                        mMobileType.setBackgroundResource(R.drawable.icon_mobile_type_4g);
+//                        break;
+//                    default:
+//                        break;
+//                }
 
                 //mMobileState.setVisibility(View.VISIBLE);
                 mMobileType.setVisibility(View.VISIBLE);

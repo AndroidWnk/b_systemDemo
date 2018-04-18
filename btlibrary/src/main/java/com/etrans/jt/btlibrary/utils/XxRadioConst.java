@@ -1,11 +1,9 @@
 package com.etrans.jt.btlibrary.utils;
 
-import android.vehicle.radio.RadioManager;
-
 public class XxRadioConst {
 	public class Switch {
-		public static final int OFF = RadioManager.SWITCH_OFF;
-		public static final int ON = RadioManager.SWITCH_ON;
+//		public static final int OFF = RadioManager.SWITCH_OFF;
+//		public static final int ON = RadioManager.SWITCH_ON;
 	}
 	
 	public class Band {

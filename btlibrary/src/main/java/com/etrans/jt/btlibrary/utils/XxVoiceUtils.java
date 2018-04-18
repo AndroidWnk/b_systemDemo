@@ -55,7 +55,7 @@ public class XxVoiceUtils {
 	
 	
 	public void setRadioLosesFocus(boolean on) {
-		mAudioManager.setRadioLosesFocus(on);
+//		mAudioManager.setRadioLosesFocus(on);
 	}
 	
 }

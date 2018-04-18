@@ -11,7 +11,6 @@ import android.media.AudioManager;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.os.SystemProperties;
 import android.util.Log;
 import android.widget.SeekBar;
 
@@ -193,15 +192,16 @@ public class BluetoothMusicModule extends BaseModule<BluetoothMusicStateListener
                 mA2dp = null;
                 Log.e(TAG, "BluetoothProfile.A2DP.ServiceListener.onServiceDisconnected");
 
-            } else if (BluetoothProfile.AVRCP_CT == profile) {
-                mConnectedDevice = null;
-                if (null != avrcp) {
-                    avrcp.unregisterEventHandler();
-                    avrcp.closeProxy();
-//                    avrcp = null;
-                }
-                Log.e(TAG, "BluetoothProfile.AVRCP_CT.ServiceListener.onServiceDisconnected");
             }
+//            else if (BluetoothProfile.AVRCP_CT == profile) {
+//                mConnectedDevice = null;
+//                if (null != avrcp) {
+//                    avrcp.unregisterEventHandler();
+//                    avrcp.closeProxy();
+////                    avrcp = null;
+//                }
+//                Log.e(TAG, "BluetoothProfile.AVRCP_CT.ServiceListener.onServiceDisconnected");
+//            }
         }
 
         @Override
@@ -333,9 +333,9 @@ public class BluetoothMusicModule extends BaseModule<BluetoothMusicStateListener
 //                    Log.d(TAG, "onGetPlayStatusRsp() songLength:" + songLength +
 //                            ", songPosition:" + songPosition + ", status:" + status);
                     if (isStatusPlaying(playStatus) && getPlayState) {
-                        if (!"tcc897xpm01v2".equals(SystemProperties.get("ro.product.device")) && !"tcc897xzd2sv2".equals(SystemProperties.get("ro.product.device"))) {
-                            requestAudioFoucs();
-                        }
+//                        if (!"tcc897xpm01v2".equals(SystemProperties.get("ro.product.device")) && !"tcc897xzd2sv2".equals(SystemProperties.get("ro.product.device"))) {
+//                            requestAudioFoucs();
+//                        }
                         getPlayState = false;
                     }
                     if (!BluetoothAvrcpController.isSuccess(status)) {
@@ -388,9 +388,9 @@ public class BluetoothMusicModule extends BaseModule<BluetoothMusicStateListener
                     // If play state is playing, get the play state value.
                     if (isStatusPlaying(avrcpState)) {
                         Log.d("XXXA", "onPlaybackStatusChanged() called with: requestAudioFoucs();");
-                        if (!"tcc897xpm01v2".equals(SystemProperties.get("ro.product.device")) && !"tcc897xzd2sv2".equals(SystemProperties.get("ro.product.device"))) {
-                            requestAudioFoucs();
-                        }
+//                        if (!"tcc897xpm01v2".equals(SystemProperties.get("ro.product.device")) && !"tcc897xzd2sv2".equals(SystemProperties.get("ro.product.device"))) {
+//                            requestAudioFoucs();
+//                        }
                         //通知中控：蓝牙音乐播放
                         mContext.sendBroadcast(new Intent("com.foton.btmusic.play"));
                         mHandler.sendEmptyMessage(Constants.GET_PLAYER_STATUS_REQUEST);
@@ -405,9 +405,9 @@ public class BluetoothMusicModule extends BaseModule<BluetoothMusicStateListener
                         mHandler.sendEmptyMessageDelayed(Constants.CMD_ALTERNATE_UPDATE_TIMER, 1000);
                     } else {
                         Log.d("XXXA", "onPlaybackStatusChanged() called with: abandonAudioFocus();");
-                        if (!"tcc897xpm01v2".equals(SystemProperties.get("ro.product.device")) && !"tcc897xzd2sv2".equals(SystemProperties.get("ro.product.device"))) {
-                            abandonAudioFocus();
-                        }
+//                        if (!"tcc897xpm01v2".equals(SystemProperties.get("ro.product.device")) && !"tcc897xzd2sv2".equals(SystemProperties.get("ro.product.device"))) {
+//                            abandonAudioFocus();
+//                        }
                         //通知中控：蓝牙音乐暂停
                         mContext.sendBroadcast(new Intent("com.foton.btmusic.pause"));
                         if (avrcpState == BluetoothAvrcpController.PLAY_STATUS_STOPPED) {
@@ -822,7 +822,8 @@ public class BluetoothMusicModule extends BaseModule<BluetoothMusicStateListener
         }
     };
 
-    protected Handler mHandler = "tcc897xpm01v2".equals(SystemProperties.get("ro.product.device")) ? mHandlerFake : mHandlerReal;
+//    protected Handler mHandler = "tcc897xpm01v2".equals(SystemProperties.get("ro.product.device")) ? mHandlerFake : mHandlerReal;
+    protected Handler mHandler = mHandlerFake;
 
 
     private void playItem(byte scope, BluetoothAvrcpBrowseItem item) {
@@ -999,9 +1000,9 @@ public class BluetoothMusicModule extends BaseModule<BluetoothMusicStateListener
     };
 
     public void resume() {
-        if("tcc897xpm01v2".equals(SystemProperties.get("ro.product.device"))) {
-            setRealHandler();
-        }
+//        if("tcc897xpm01v2".equals(SystemProperties.get("ro.product.device"))) {
+//            setRealHandler();
+//        }
 
         if (null != avrcp) {
             avrcp.unregisterEventHandler();
@@ -1044,9 +1045,9 @@ public class BluetoothMusicModule extends BaseModule<BluetoothMusicStateListener
         mHandler.removeMessages(Constants.CMD_RELOAD_PROGRESS);
         mHandler.removeMessages(Constants.CMD_UPDATE_PROGRESS);
         mHandler.removeMessages(Constants.CMD_ALTERNATE_UPDATE_TIMER);
-        if("tcc897xpm01v2".equals(SystemProperties.get("ro.product.device"))) {
-            setFakeHandler();
-        }
+//        if("tcc897xpm01v2".equals(SystemProperties.get("ro.product.device"))) {
+//            setFakeHandler();
+//        }
 //        if (mCmdController != null) {
 //            mCmdController.unregisterCallback();
 //            mCmdController.clear();
@@ -1076,9 +1077,9 @@ public class BluetoothMusicModule extends BaseModule<BluetoothMusicStateListener
         if (proxy) {
             proxy = false;
         }
-        if (!"tcc897xpm01v2".equals(SystemProperties.get("ro.product.device")) && !"tcc897xzd2sv2".equals(SystemProperties.get("ro.product.device"))) {
-            abandonAudioFocus();
-        }
+//        if (!"tcc897xpm01v2".equals(SystemProperties.get("ro.product.device")) && !"tcc897xzd2sv2".equals(SystemProperties.get("ro.product.device"))) {
+//            abandonAudioFocus();
+//        }
 //        mAudioManager.unregisterMediaButtonEventReceiver(mComponentName);
     }
 
@@ -1121,7 +1122,7 @@ public class BluetoothMusicModule extends BaseModule<BluetoothMusicStateListener
 //                        setCallVolume(0);
                         streamVolume = mAudioManager.getStreamVolume(AudioManager.STREAM_MUSIC);
                         setNotificationVolume(1);
-                        mAudioManager.setBtMusicLosesFocus(true);
+//                        mAudioManager.setBtMusicLosesFocus(true);
 //                        mAudioManager.adjustStreamVolume(AudioManager.STREAM_VOICE_CALL,AudioManager.ADJUST_LOWER,AudioManager.FLAG_SHOW_UI);
                         Log.d(TAG, "AUDIOFOUCS_LOWERVOLUME" + "streamVolume = [" + streamVolume + "]" + mbLowVolume);
                     }
@@ -1143,7 +1144,7 @@ public class BluetoothMusicModule extends BaseModule<BluetoothMusicStateListener
                     }
                     mbLowVolume = false;
 //                    setCallVolume(mAudioManager.getStreamMaxVolume(AudioManager.STREAM_VOICE_CALL));
-                    mAudioManager.setBtMusicLosesFocus(false);
+//                    mAudioManager.setBtMusicLosesFocus(false);
                     setNotificationVolume(streamVolume);
                     Log.d(TAG, "AUDIOFOUCS_RESUMEVOLUME" + "streamVolume = [" + streamVolume + "]" + mbLowVolume);
 //                    mAudioManager.adjustStreamVolume(AudioManager.STREAM_VOICE_CALL,AudioManager.ADJUST_RAISE,AudioManager.FLAG_SHOW_UI);
