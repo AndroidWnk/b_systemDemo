@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/b_systemDemo.iml" filepath="$PROJECT_DIR$/b_systemDemo.iml" />
+      <module fileurl="file://$PROJECT_DIR$/btlibrary/btlibrary.iml" filepath="$PROJECT_DIR$/btlibrary/btlibrary.iml" />
+      <module fileurl="file://$PROJECT_DIR$/telechip_bluetooth/telechip_bluetooth.iml" filepath="$PROJECT_DIR$/telechip_bluetooth/telechip_bluetooth.iml" />
+    </modules>
+  </component>
+</project>

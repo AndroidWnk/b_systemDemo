@@ -1,0 +1,24 @@
+<resources>
+    <string name="app_name">Bluetooth</string>
+    <string name="disconnect">BT nie je pripojený</string>
+    <string name="close">Bluetooth nie je zapnutá</string>
+    <string name="edit_contact_digits">QAZXSWEDCVFRTGBNHYUJMKIOLPqazxswedcvfrtgbnhyujmkiolp</string>
+    <string name="btearphone_setting_name">Názov BT：</string>
+    <string name="btearphone_setting_passwd">Páruji heslo：</string>
+    <string name="bt_unconnected">Odpojené</string>
+    <string name="bt_Donloading_wait">Importovanie kontaktov!</string>
+    <string name="bt_enter_correct_number">Zadajte prosím správne telefónne číslo</string>
+    <string name="bt_search">Vyhľadávanie kontaktov</string>
+    <string name="bt_unkonw">Neznámy</string>
+    <string name="bt_dialing">Vytáčania...</string>
+    <string name="bt_title">Telefón</string>
+
+    <string name="txz_sdk_init_app_id">7ac2e511022a0f637a262b5b80fbcd91</string>
+    <string name="txz_sdk_init_app_token">ff4ad0fe1f187a8fda3870ff5ad1e9249df4b355</string>
+    <string-array name="txz_sdk_init_wakeup_keywords">
+        <item>Viete, fazuľa</item>
+        <item>Vedia fazuľa Hello</item>
+    </string-array>
+
+    <string name="no_results_were_found">Nenašli sa žiadne výsledky!</string>
+</resources>

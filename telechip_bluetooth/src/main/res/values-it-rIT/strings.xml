@@ -1,0 +1,25 @@
+﻿<resources>
+
+    <string name="app_name">Cellulare abilitato BT</string>
+    <string name="disconnect">BT non si è connesso</string>
+    <string name="close">Si prega di accendere il dispositivo BT</string>
+    <string name="edit_contact_digits">QAZXSWEDCVFRTGBNHYUJMKIOLPqazxswedcvfrtgbnhyujmkiolp</string>
+    <string name="btearphone_setting_name">Nome BT：</string>
+    <string name="btearphone_setting_passwd">BT password：</string>
+    <string name="bt_unconnected">Non collegato</string>
+    <string name="bt_Donloading_wait">Importazione di contatti!</string>
+    <string name="bt_enter_correct_number">Errore di formato di input di numero di telefono</string>
+    <string name="bt_search">Ricerca</string>
+    <string name="bt_unkonw">Sconosciuto</string>
+    <string name="bt_dialing">Sta chiamando..</string>
+    <string name="bt_title">Cellulare abilitato BT</string>
+
+    <string name="txz_sdk_init_app_id">7ac2e511022a0f637a262b5b80fbcd91</string>
+    <string name="txz_sdk_init_app_token">ff4ad0fe1f187a8fda3870ff5ad1e9249df4b355</string>
+    <string-array name="txz_sdk_init_wakeup_keywords">
+        <item>你好知豆</item>
+        <item>知豆你好</item>
+    </string-array>
+
+    <string name="no_results_were_found">Nessun risultato trovato!</string>
+</resources>

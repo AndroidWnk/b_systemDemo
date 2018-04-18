@@ -1,0 +1,24 @@
+<resources>
+    <string name="app_name">BT</string>
+    <string name="disconnect">Η BT δεν είναι συνδεδεμένη</string>
+    <string name="close">Το Bluetooth, δεν άνοιξε</string>
+    <string name="edit_contact_digits">QAZXSWEDCVFRTGBNHYUJMKIOLPqazxswedcvfrtgbnhyujmkiolp</string>
+    <string name="btearphone_setting_name">Όνομα BT：</string>
+    <string name="btearphone_setting_passwd">Το Bluetooth.：</string>
+    <string name="bt_unconnected">Ασύνδετος</string>
+    <string name="bt_Donloading_wait">Εισαγωγή επαφές!</string>
+    <string name="bt_enter_correct_number">Παρακαλώ εισάγετε το σωστό αριθμό τηλεφώνου</string>
+    <string name="bt_search">Αναζήτηση επαφών</string>
+    <string name="bt_unkonw">Αγνωστος</string>
+    <string name="bt_dialing">Κατά τη διάρκεια της κλήσης..</string>
+    <string name="bt_title">Τηλ.</string>
+
+    <string name="txz_sdk_init_app_id">7ac2e511022a0f637a262b5b80fbcd91</string>
+    <string name="txz_sdk_init_app_token">ff4ad0fe1f187a8fda3870ff5ad1e9249df4b355</string>
+    <string-array name="txz_sdk_init_wakeup_keywords">
+        <item>Γεια σου ξέρει.</item>
+        <item>Γεια σου ξέρει.</item>
+    </string-array>
+
+    <string name="no_results_were_found">δεν έψαξε για τα αποτελέσματα!</string>
+</resources>

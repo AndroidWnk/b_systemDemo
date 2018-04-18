@@ -1,0 +1,42 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 19
+    buildToolsVersion "25.0.0"
+
+    defaultConfig {
+        applicationId "com.etrans.jt.bluetooth"
+        minSdkVersion 16
+        targetSdkVersion 19
+        versionCode 36005
+        versionName "v3.1.1.36005.yc.9"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    android {
+        lintOptions {
+            //build release 版本时关闭lint 检测
+            checkReleaseBuilds false
+            //lint 遇到 error 时继续 构建
+            abortOnError false
+        }
+    }
+
+
+    dexOptions {
+        javaMaxHeapSize "4g"
+    }
+}
+
+dependencies {
+    compile fileTree(include: ['*.jar'], dir: 'libs')
+    compile 'com.jakewharton:butterknife:7.0.0'
+    compile 'com.android.support:support-v4:19.1.0'
+    compile project(':btlibrary')
+    compile files('libs/TXZ_SDK.jar')
+    compile 'org.greenrobot:eventbus:3.0.0'
+}

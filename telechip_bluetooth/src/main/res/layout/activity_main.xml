@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/app_name" />
+
+        <Button
+            android:id="@+id/btn_start_music"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Music" />
+
+        <Button
+            android:id="@+id/btn_connect_bt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="蓝牙打开" />
+
+        <Button
+            android:id="@+id/btn_get_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="获取蓝牙名称" />
+
+        <Button
+            android:id="@+id/btn_start_phone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="打开电话" />
+    </LinearLayout>
+
+</LinearLayout>

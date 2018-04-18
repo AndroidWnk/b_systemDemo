@@ -1,0 +1,24 @@
+<resources>
+    <string name="app_name">Phone</string>
+    <string name="disconnect">BT unconnected</string>
+    <string name="close">Please turn on the BT device</string>
+    <string name="edit_contact_digits">QAZXSWEDCVFRTGBNHYUJMKIOLPqazxswedcvfrtgbnhyujmkiolp</string>
+    <string name="btearphone_setting_name">BT name：</string>
+    <string name="btearphone_setting_passwd">BT password：</string>
+    <string name="bt_unconnected">Unconnected</string>
+    <string name="bt_Donloading_wait">Donloading!</string>
+    <string name="bt_enter_correct_number">Phone number\'s format error</string>
+    <string name="bt_search">Search</string>
+    <string name="bt_unkonw">Unkonw</string>
+    <string name="bt_dialing">Calling..</string>
+    <string name="bt_title">Phone</string>
+
+    <string name="txz_sdk_init_app_id">7ac2e511022a0f637a262b5b80fbcd91</string>
+    <string name="txz_sdk_init_app_token">ff4ad0fe1f187a8fda3870ff5ad1e9249df4b355</string>
+    <string-array name="txz_sdk_init_wakeup_keywords">
+        <item>你好知豆</item>
+        <item>知豆你好</item>
+    </string-array>
+
+    <string name="no_results_were_found">No search results!</string>
+</resources>

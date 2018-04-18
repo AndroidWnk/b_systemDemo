@@ -1,0 +1,24 @@
+<resources>
+    <string name="app_name">蓝牙</string>
+    <string name="disconnect">蓝牙未连接</string>
+    <string name="close">蓝牙未打开</string>
+    <string name="edit_contact_digits">QAZXSWEDCVFRTGBNHYUJMKIOLPqazxswedcvfrtgbnhyujmkiolp</string>
+    <string name="btearphone_setting_name">蓝牙名称：</string>
+    <string name="btearphone_setting_passwd">蓝牙密码：</string>
+    <string name="bt_unconnected">未连接</string>
+    <string name="bt_Donloading_wait">正在导入联系人!</string>
+    <string name="bt_enter_correct_number">请输入正确的电话号码</string>
+    <string name="bt_search">搜索联系人</string>
+    <string name="bt_unkonw">未知</string>
+    <string name="bt_dialing">拨号中..</string>
+    <string name="bt_title">电话</string>
+
+    <string name="txz_sdk_init_app_id">7ac2e511022a0f637a262b5b80fbcd91</string>
+    <string name="txz_sdk_init_app_token">ff4ad0fe1f187a8fda3870ff5ad1e9249df4b355</string>
+    <string-array name="txz_sdk_init_wakeup_keywords">
+        <item>你好知豆</item>
+        <item>知豆你好</item>
+    </string-array>
+
+    <string name="no_results_were_found">未搜索到结果!</string>
+</resources>

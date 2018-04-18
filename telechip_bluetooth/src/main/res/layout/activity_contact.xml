@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:focusable="false"
+    android:focusableInTouchMode="false">
+
+
+    <RelativeLayout
+        android:id="@+id/search_input_layer"
+        android:layout_width="match_parent"
+        android:layout_height="62dp"
+        android:layout_alignParentTop="true"
+        android:background="@drawable/top_bor"
+        android:focusable="false"
+        android:focusableInTouchMode="false">
+
+        <ImageView
+            android:id="@+id/iv_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="15dp"
+            android:background="@drawable/bt_back_style"
+            android:focusable="false"
+            android:focusableInTouchMode="false"/>
+
+        <ImageView
+            android:id="@+id/search_edit_back"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerInParent="true"
+            android:layout_marginRight="25px"
+            android:layout_toRightOf="@id/iv_back"
+            android:background="@drawable/bg_search_input"
+            android:focusable="false"
+            android:focusableInTouchMode="false"/>
+
+        <EditText
+            android:id="@+id/et_contact_search"
+            android:layout_width="800px"
+            android:layout_height="70px"
+            android:layout_alignBaseline="@id/search_edit_back"
+            android:layout_alignLeft="@id/search_edit_back"
+            android:background="@null"
+            android:hint="@string/bt_search"
+            android:imeOptions="actionSearch"
+            android:paddingLeft="24px"
+            android:singleLine="true"
+            android:textColor="#ffffff"
+            android:textSize="18sp" />
+
+        <Button
+            android:id="@+id/search_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignRight="@id/search_edit_back"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="30px"
+            android:background="@drawable/btn_search" />
+    </RelativeLayout>
+
+    <ImageView
+        android:id="@+id/contact_back"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/search_input_layer"
+        android:layout_centerHorizontal="true"
+        android:background="@null" />
+
+    <ListView
+        android:id="@+id/lv_contact_search"
+        android:layout_width="match_parent"
+        android:layout_height="503px"
+        android:layout_below="@id/search_input_layer"
+        android:layout_centerHorizontal="true"
+        android:divider="@drawable/divider_list"
+        android:listSelector="@android:color/transparent"
+        android:focusable="false"
+        android:focusableInTouchMode="false" />
+
+
+</RelativeLayout>
