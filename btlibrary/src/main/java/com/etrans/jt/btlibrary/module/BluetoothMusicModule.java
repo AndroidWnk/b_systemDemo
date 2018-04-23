@@ -11,6 +11,7 @@ import android.media.AudioManager;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.os.SystemProperties;
 import android.util.Log;
 import android.widget.SeekBar;
 
@@ -192,16 +193,15 @@ public class BluetoothMusicModule extends BaseModule<BluetoothMusicStateListener
                 mA2dp = null;
                 Log.e(TAG, "BluetoothProfile.A2DP.ServiceListener.onServiceDisconnected");
 
+            } else if (BluetoothProfile.AVRCP_CT == profile) {
+                mConnectedDevice = null;
+                if (null != avrcp) {
+                    avrcp.unregisterEventHandler();
+                    avrcp.closeProxy();
+//                    avrcp = null;
+                }
+                Log.e(TAG, "BluetoothProfile.AVRCP_CT.ServiceListener.onServiceDisconnected");
             }
-//            else if (BluetoothProfile.AVRCP_CT == profile) {
-//                mConnectedDevice = null;
-//                if (null != avrcp) {
-//                    avrcp.unregisterEventHandler();
-//                    avrcp.closeProxy();
-////                    avrcp = null;
-//                }
-//                Log.e(TAG, "BluetoothProfile.AVRCP_CT.ServiceListener.onServiceDisconnected");
-//            }
         }
 
         @Override
@@ -228,324 +228,324 @@ public class BluetoothMusicModule extends BaseModule<BluetoothMusicStateListener
 
     IBluetoothAvrcpControllerEventHandler eventHandler = new IBluetoothAvrcpControllerEventHandler() {
 
-                //监听avrcp连接状态
+        //监听avrcp连接状态
 
-                /**
-                 * AVRCP连接状态变化
-                 * @param target   与连接状态的变化相关联的目标设备
-                 * @param newState STATE_DISCONNECTED，STATE_CONNECTING， STATE_CONNECTED，STATE_DISCONNECTING
-                 *                 如果返回的是false 则这些参数是无效的
-                 * @param success  true 连接成功 false 连接失败
-                 */
-                @Override
-                public void onConnectionStateChange(BluetoothDevice target,
-                                                    int newState, boolean success) {
-                    if (mCmdController != null)
-                        mCmdController.onConnectionStateChange(target, newState,
-                                success);
+        /**
+         * AVRCP连接状态变化
+         * @param target   与连接状态的变化相关联的目标设备
+         * @param newState STATE_DISCONNECTED，STATE_CONNECTING， STATE_CONNECTED，STATE_DISCONNECTING
+         *                 如果返回的是false 则这些参数是无效的
+         * @param success  true 连接成功 false 连接失败
+         */
+        @Override
+        public void onConnectionStateChange(BluetoothDevice target,
+                                            int newState, boolean success) {
+            if (mCmdController != null)
+                mCmdController.onConnectionStateChange(target, newState,
+                        success);
 
-                    mConnectedDevice = target;
-                }
+            mConnectedDevice = target;
+        }
 
-                /**
-                 *
-                 * @param target        与连接状态的变化相关联的目标设备
-                 * @param attributeId
-                 * @param status        AVRCP响应错误/状态代码
-                 */
-                @Override
-                public void onListPlayerApplicationSettingAttributesRsp(
-                        BluetoothDevice target, byte[] attributeId, int status) {
-                    if (mCmdController != null)
-                        mCmdController.onListPlayerApplicationSettingAttributesRsp(
-                                target, attributeId, status);
+        /**
+         *
+         * @param target        与连接状态的变化相关联的目标设备
+         * @param attributeId
+         * @param status        AVRCP响应错误/状态代码
+         */
+        @Override
+        public void onListPlayerApplicationSettingAttributesRsp(
+                BluetoothDevice target, byte[] attributeId, int status) {
+            if (mCmdController != null)
+                mCmdController.onListPlayerApplicationSettingAttributesRsp(
+                        target, attributeId, status);
 
-                }
+        }
 
-                /**
-                 *
-                 * @param target        与连接状态的变化相关联的目标设备
-                 * @param attrId
-                 * @param valueId
-                 * @param status
-                 */
-                @Override
-                public void onListPlayerApplicationSettingValuesRsp(
-                        BluetoothDevice target, byte attrId, byte[] valueId,
-                        int status) {
-                    Log.d(TAG, "onListPlayerApplicationSettingValuesRsp() " + attrId);
-                    if (mCmdController != null)
-                        mCmdController.onListPlayerApplicationSettingValuesRsp(target,
-                                attrId, valueId, status);
+        /**
+         *
+         * @param target        与连接状态的变化相关联的目标设备
+         * @param attrId
+         * @param valueId
+         * @param status
+         */
+        @Override
+        public void onListPlayerApplicationSettingValuesRsp(
+                BluetoothDevice target, byte attrId, byte[] valueId,
+                int status) {
+            Log.d(TAG, "onListPlayerApplicationSettingValuesRsp() " + attrId);
+            if (mCmdController != null)
+                mCmdController.onListPlayerApplicationSettingValuesRsp(target,
+                        attrId, valueId, status);
 
-                }
+        }
 
-                @Override
-                public void onGetCurrentPlayerApplicationSettingValueRsp(
-                        BluetoothDevice target, byte[] attributeId, byte[] valueId,
-                        int status) {
-                    Log.d(TAG, "onGetCurrentPlayerApplicationSettingValueRsp() ");
-                    if (mCmdController != null)
-                        mCmdController.onGetCurrentPlayerApplicationSettingValueRsp(
-                                target, attributeId, valueId, status);
+        @Override
+        public void onGetCurrentPlayerApplicationSettingValueRsp(
+                BluetoothDevice target, byte[] attributeId, byte[] valueId,
+                int status) {
+            Log.d(TAG, "onGetCurrentPlayerApplicationSettingValueRsp() ");
+            if (mCmdController != null)
+                mCmdController.onGetCurrentPlayerApplicationSettingValueRsp(
+                        target, attributeId, valueId, status);
 
-                }
+        }
 
-                @Override
-                public void onGetPlayerApplicationSettingAttributeTextRsp(
-                        BluetoothDevice target, byte[] attributeId,
-                        String[] attributeText, int status) {
-                    Log.d(TAG, "onGetPlayerApplicationSettingAttributeTextRsp() ");
-                    if (mCmdController != null)
-                        mCmdController.onGetPlayerApplicationSettingAttributeTextRsp(
-                                target, attributeId, attributeText,
-                                status);
+        @Override
+        public void onGetPlayerApplicationSettingAttributeTextRsp(
+                BluetoothDevice target, byte[] attributeId,
+                String[] attributeText, int status) {
+            Log.d(TAG, "onGetPlayerApplicationSettingAttributeTextRsp() ");
+            if (mCmdController != null)
+                mCmdController.onGetPlayerApplicationSettingAttributeTextRsp(
+                        target, attributeId, attributeText,
+                        status);
 
-                }
+        }
 
-                @Override
-                public void onGetPlayerApplicationSettingValueTextRsp(
-                        BluetoothDevice target, byte attributeId, byte[] valueId,
-                        String[] valueText, int status) {
-                    Log.d(TAG, "onGetPlayerApplicationSettingValueTextRsp() " + attributeId);
-                    if (mCmdController != null)
-                        mCmdController.onGetPlayerApplicationSettingValueTextRsp(
-                                target, attributeId, valueId, valueText,
-                                status);
+        @Override
+        public void onGetPlayerApplicationSettingValueTextRsp(
+                BluetoothDevice target, byte attributeId, byte[] valueId,
+                String[] valueText, int status) {
+            Log.d(TAG, "onGetPlayerApplicationSettingValueTextRsp() " + attributeId);
+            if (mCmdController != null)
+                mCmdController.onGetPlayerApplicationSettingValueTextRsp(
+                        target, attributeId, valueId, valueText,
+                        status);
 
-                }
+        }
 
-                @Override
-                public void onGetElementAttributesRsp(BluetoothDevice target,
-                                                      int[] attributeId, String[] valueText,
-                                                      int status) {
-                    if (mCmdController != null)
-                        mCmdController.onGetElementAttributesRsp(target, attributeId,
-                                valueText, status);
-                    if (isBluetoothMusicPlaying()) {
-                        sendPlayBtMusicBroadCast(1);//切歌
-                    }
-                }
+        @Override
+        public void onGetElementAttributesRsp(BluetoothDevice target,
+                                              int[] attributeId, String[] valueText,
+                                              int status) {
+            if (mCmdController != null)
+                mCmdController.onGetElementAttributesRsp(target, attributeId,
+                        valueText, status);
+            if (isBluetoothMusicPlaying()) {
+                sendPlayBtMusicBroadCast(1);//切歌
+            }
+        }
 
-                @Override
-                public void onGetPlayStatusRsp(BluetoothDevice target, int songLength,
-                                               int songPosition, byte playStatus, int status) {
+        @Override
+        public void onGetPlayStatusRsp(BluetoothDevice target, int songLength,
+                                       int songPosition, byte playStatus, int status) {
 //                    Log.d(TAG, "onGetPlayStatusRsp() songLength:" + songLength +
 //                            ", songPosition:" + songPosition + ", status:" + status);
-                    if (isStatusPlaying(playStatus) && getPlayState) {
-//                        if (!"tcc897xpm01v2".equals(SystemProperties.get("ro.product.device")) && !"tcc897xzd2sv2".equals(SystemProperties.get("ro.product.device"))) {
-//                            requestAudioFoucs();
-//                        }
-                        getPlayState = false;
-                    }
-                    if (!BluetoothAvrcpController.isSuccess(status)) {
-                        Log.d(TAG, "Failed to get Play status. Do not update UI");
-                        return;
-                    }
-                    if (mCmdController != null)
-                        mCmdController.onGetPlayStatusRsp(target, songLength,
-                                songPosition, playStatus, status);
+            if (isStatusPlaying(playStatus) && getPlayState) {
+                if (!"tcc897xpm01v2".equals(SystemProperties.get("ro.product.device")) && !"tcc897xzd2sv2".equals(SystemProperties.get("ro.product.device"))) {
+                    requestAudioFoucs();
+                }
+                getPlayState = false;
+            }
+            if (!BluetoothAvrcpController.isSuccess(status)) {
+                Log.d(TAG, "Failed to get Play status. Do not update UI");
+                return;
+            }
+            if (mCmdController != null)
+                mCmdController.onGetPlayStatusRsp(target, songLength,
+                        songPosition, playStatus, status);
 //                    Log.d(TAG, "onGetPlayStatusRsp() : " + avrcpState + " >>> " + (long) playStatus);
 
-                    mPosition = songPosition;
-                    Message msg = mHandler.obtainMessage(Constants.CMD_UPDATE_PROGRESS);
-                    msg.arg1 = songPosition;
-                    msg.arg2 = songLength;
-                    mHandler.sendMessage(msg);
-                    if (avrcpState != (long) playStatus) {
-                        avrcpState = (long) playStatus;
-                        mHandler.sendEmptyMessage(Constants.CMD_RELOAD_UI);
-                        // If play state is playing, get the play state value.
-                        mHandler.removeMessages(Constants.GET_ELEMENT_ATTR_REQUEST);
-                        mHandler.sendEmptyMessage(Constants.GET_ELEMENT_ATTR_REQUEST);
-                        return;
-                    }
-                    mHandler.sendEmptyMessage(Constants.CMD_ALTERNATE_UPDATE_TIMER);
-                    mHandler.sendEmptyMessage(Constants.CMD_RELOAD_METADATA);
-                    mHandler.sendEmptyMessage(Constants.CMD_RELOAD_UI);
+            mPosition = songPosition;
+            Message msg = mHandler.obtainMessage(Constants.CMD_UPDATE_PROGRESS);
+            msg.arg1 = songPosition;
+            msg.arg2 = songLength;
+            mHandler.sendMessage(msg);
+            if (avrcpState != (long) playStatus) {
+                avrcpState = (long) playStatus;
+                mHandler.sendEmptyMessage(Constants.CMD_RELOAD_UI);
+                // If play state is playing, get the play state value.
+                mHandler.removeMessages(Constants.GET_ELEMENT_ATTR_REQUEST);
+                mHandler.sendEmptyMessage(Constants.GET_ELEMENT_ATTR_REQUEST);
+                return;
+            }
+            mHandler.sendEmptyMessage(Constants.CMD_ALTERNATE_UPDATE_TIMER);
+            mHandler.sendEmptyMessage(Constants.CMD_RELOAD_METADATA);
+            mHandler.sendEmptyMessage(Constants.CMD_RELOAD_UI);
 //                    Log.d(TAG, "onGetPlayStatusRsp() called with: " + "target = [" + target + "], songLength = [" + songLength + "], songPosition = [" + songPosition + "], playStatus = [" + playStatus + "], status = [" + status + "]");
 
-                }
+        }
 
-                /**
-                 * 播放状态改变监听
-                 * @param target        当前设备
-                 * @param playStatus    播放参数   暂停 播放 停止 快进 快退 上一曲/下一曲时回调这个方法
-                 */
-                @Override
-                public void onPlaybackStatusChanged(BluetoothDevice target,
-                                                    byte playStatus) {
-                    Log.d("XXXA", "onPlaybackStatusChanged() " + avrcpState + " >>> " + (long) playStatus);
-                    boolean hasPlayStatusChanged = (avrcpState == (long) playStatus);
-                    boolean hasPlayStatusRestarted =
-                            (avrcpState == BluetoothAvrcpController.PLAY_STATUS_STOPPED &&
-                                    playStatus == BluetoothAvrcpController.PLAY_STATUS_PLAYING);
-                    boolean hasPlayStatusContinued =
-                            (avrcpState == BluetoothAvrcpController.PLAY_STATUS_PAUSED &&
-                                    playStatus == BluetoothAvrcpController.PLAY_STATUS_PLAYING);
-                    avrcpState = (long) playStatus;
-                    mHandler.sendEmptyMessage(Constants.CMD_RELOAD_UI);
-                    // If play state is playing, get the play state value.
-                    if (isStatusPlaying(avrcpState)) {
-                        Log.d("XXXA", "onPlaybackStatusChanged() called with: requestAudioFoucs();");
-//                        if (!"tcc897xpm01v2".equals(SystemProperties.get("ro.product.device")) && !"tcc897xzd2sv2".equals(SystemProperties.get("ro.product.device"))) {
-//                            requestAudioFoucs();
-//                        }
-                        //通知中控：蓝牙音乐播放
-                        mContext.sendBroadcast(new Intent("com.foton.btmusic.play"));
-                        mHandler.sendEmptyMessage(Constants.GET_PLAYER_STATUS_REQUEST);
-                        mHandler.sendEmptyMessageDelayed(Constants.GET_ELEMENT_ATTR_REQUEST, 100);
-                        if (hasPlayStatusRestarted && !hasPlayStatusContinued) {
-                            for (BluetoothMusicStateListener listener : listeners) {
-                                listener.onUpdateSeek(0);
-//                                Log.d("onUpdateSeek", "onPlaybackStatusChanged1");
-                            }
-                        }
-                        mHandler.sendEmptyMessageDelayed(Constants.CMD_RELOAD_PROGRESS, 1000);
-                        mHandler.sendEmptyMessageDelayed(Constants.CMD_ALTERNATE_UPDATE_TIMER, 1000);
-                    } else {
-                        Log.d("XXXA", "onPlaybackStatusChanged() called with: abandonAudioFocus();");
-//                        if (!"tcc897xpm01v2".equals(SystemProperties.get("ro.product.device")) && !"tcc897xzd2sv2".equals(SystemProperties.get("ro.product.device"))) {
-//                            abandonAudioFocus();
-//                        }
-                        //通知中控：蓝牙音乐暂停
-                        mContext.sendBroadcast(new Intent("com.foton.btmusic.pause"));
-                        if (avrcpState == BluetoothAvrcpController.PLAY_STATUS_STOPPED) {
-                            for (BluetoothMusicStateListener listener : listeners) {
-                                listener.onUpdateSeek(0);
-//                                Log.d("onUpdateSeek", "onPlaybackStatusChanged2");
-                            }
-                        }
-                        mHandler.removeMessages(Constants.CMD_RELOAD_PROGRESS);
-                        mHandler.removeMessages(Constants.CMD_UPDATE_PROGRESS);
-                        mHandler.removeMessages(Constants.CMD_ALTERNATE_UPDATE_TIMER);
-                    }
-                    if (playStatus != 0) {
-                        sendPlayBtMusicBroadCast(playStatus);
-                    }
+        /**
+         * 播放状态改变监听
+         * @param target        当前设备
+         * @param playStatus    播放参数   暂停 播放 停止 快进 快退 上一曲/下一曲时回调这个方法
+         */
+        @Override
+        public void onPlaybackStatusChanged(BluetoothDevice target,
+                                            byte playStatus) {
+            Log.d("XXXA", "onPlaybackStatusChanged() " + avrcpState + " >>> " + (long) playStatus);
+            boolean hasPlayStatusChanged = (avrcpState == (long) playStatus);
+            boolean hasPlayStatusRestarted =
+                    (avrcpState == BluetoothAvrcpController.PLAY_STATUS_STOPPED &&
+                            playStatus == BluetoothAvrcpController.PLAY_STATUS_PLAYING);
+            boolean hasPlayStatusContinued =
+                    (avrcpState == BluetoothAvrcpController.PLAY_STATUS_PAUSED &&
+                            playStatus == BluetoothAvrcpController.PLAY_STATUS_PLAYING);
+            avrcpState = (long) playStatus;
+            mHandler.sendEmptyMessage(Constants.CMD_RELOAD_UI);
+            // If play state is playing, get the play state value.
+            if (isStatusPlaying(avrcpState)) {
+                Log.d("XXXA", "onPlaybackStatusChanged() called with: requestAudioFoucs();");
+                if (!"tcc897xpm01v2".equals(SystemProperties.get("ro.product.device")) && !"tcc897xzd2sv2".equals(SystemProperties.get("ro.product.device"))) {
+                    requestAudioFoucs();
                 }
-
-                @Override
-                public void onTrackChanged(BluetoothDevice target, long trackId) {
-                    mHandler.sendEmptyMessage(Constants.GET_ELEMENT_ATTR_REQUEST);
+                //通知中控：蓝牙音乐播放
+                mContext.sendBroadcast(new Intent("com.foton.btmusic.play"));
+                mHandler.sendEmptyMessage(Constants.GET_PLAYER_STATUS_REQUEST);
+                mHandler.sendEmptyMessageDelayed(Constants.GET_ELEMENT_ATTR_REQUEST, 100);
+                if (hasPlayStatusRestarted && !hasPlayStatusContinued) {
                     for (BluetoothMusicStateListener listener : listeners) {
                         listener.onUpdateSeek(0);
-                        mPosition = 0;
+//                                Log.d("onUpdateSeek", "onPlaybackStatusChanged1");
+                    }
+                }
+                mHandler.sendEmptyMessageDelayed(Constants.CMD_RELOAD_PROGRESS, 1000);
+                mHandler.sendEmptyMessageDelayed(Constants.CMD_ALTERNATE_UPDATE_TIMER, 1000);
+            } else {
+                Log.d("XXXA", "onPlaybackStatusChanged() called with: abandonAudioFocus();");
+                if (!"tcc897xpm01v2".equals(SystemProperties.get("ro.product.device")) && !"tcc897xzd2sv2".equals(SystemProperties.get("ro.product.device"))) {
+                    abandonAudioFocus();
+                }
+                //通知中控：蓝牙音乐暂停
+                mContext.sendBroadcast(new Intent("com.foton.btmusic.pause"));
+                if (avrcpState == BluetoothAvrcpController.PLAY_STATUS_STOPPED) {
+                    for (BluetoothMusicStateListener listener : listeners) {
+                        listener.onUpdateSeek(0);
+//                                Log.d("onUpdateSeek", "onPlaybackStatusChanged2");
+                    }
+                }
+                mHandler.removeMessages(Constants.CMD_RELOAD_PROGRESS);
+                mHandler.removeMessages(Constants.CMD_UPDATE_PROGRESS);
+                mHandler.removeMessages(Constants.CMD_ALTERNATE_UPDATE_TIMER);
+            }
+            if (playStatus != 0) {
+                sendPlayBtMusicBroadCast(playStatus);
+            }
+        }
+
+        @Override
+        public void onTrackChanged(BluetoothDevice target, long trackId) {
+            mHandler.sendEmptyMessage(Constants.GET_ELEMENT_ATTR_REQUEST);
+            for (BluetoothMusicStateListener listener : listeners) {
+                listener.onUpdateSeek(0);
+                mPosition = 0;
 //                        Log.d("onUpdateSeek", "onTrackChanged");
-                    }
-                    mHandler.sendEmptyMessageDelayed(Constants.CMD_RELOAD_PROGRESS, 1000);
-                }
+            }
+            mHandler.sendEmptyMessageDelayed(Constants.CMD_RELOAD_PROGRESS, 1000);
+        }
 
-                @Override
-                public void onTrackReachedEnd(BluetoothDevice target) {
-                    // TODO Auto-generated method stub
+        @Override
+        public void onTrackReachedEnd(BluetoothDevice target) {
+            // TODO Auto-generated method stub
 
-                }
+        }
 
-                @Override
-                public void onTrackReachedStart(BluetoothDevice target) {
-                    // TODO Auto-generated method stub
-                }
+        @Override
+        public void onTrackReachedStart(BluetoothDevice target) {
+            // TODO Auto-generated method stub
+        }
 
-                @Override
-                public void onPlaybackPositionChanged(BluetoothDevice target,
-                                                      int playbackPosition) {
-                    // TODO Auto-generated method stub
-                    // Since this callback is successful, remove alternate timer for
-                    mHandler.removeMessages(Constants.CMD_ALTERNATE_UPDATE_TIMER);
-                    Log.d(TAG, "onPlaybackPositionChanged()  playbackPosition: " + playbackPosition);
-                    mPosition = playbackPosition;
-                    Message msg = mHandler.obtainMessage(Constants.CMD_UPDATE_PROGRESS);
-                    msg.arg1 = playbackPosition;
-                    msg.arg2 = -1;
-                    mHandler.sendMessage(msg);
-                }
+        @Override
+        public void onPlaybackPositionChanged(BluetoothDevice target,
+                                              int playbackPosition) {
+            // TODO Auto-generated method stub
+            // Since this callback is successful, remove alternate timer for
+            mHandler.removeMessages(Constants.CMD_ALTERNATE_UPDATE_TIMER);
+            Log.d(TAG, "onPlaybackPositionChanged()  playbackPosition: " + playbackPosition);
+            mPosition = playbackPosition;
+            Message msg = mHandler.obtainMessage(Constants.CMD_UPDATE_PROGRESS);
+            msg.arg1 = playbackPosition;
+            msg.arg2 = -1;
+            mHandler.sendMessage(msg);
+        }
 
-                @Override
-                public void onPlayerAppSettingChanged(BluetoothDevice target,
-                                                      byte[] attribute, byte[] value) {
-                    if (mCmdController != null)
-                        mCmdController.onPlayerAppSettingChanged(target, attribute,
-                                value);
-                    mHandler.sendEmptyMessage(Constants.CMD_RELOAD_UI);
-                }
+        @Override
+        public void onPlayerAppSettingChanged(BluetoothDevice target,
+                                              byte[] attribute, byte[] value) {
+            if (mCmdController != null)
+                mCmdController.onPlayerAppSettingChanged(target, attribute,
+                        value);
+            mHandler.sendEmptyMessage(Constants.CMD_RELOAD_UI);
+        }
 
-                @Override
-                public void onChangePathRsp(BluetoothDevice target, byte direction, int numberOfItems,
-                                            int status) {
-                }
+        @Override
+        public void onChangePathRsp(BluetoothDevice target, byte direction, int numberOfItems,
+                                    int status) {
+        }
 
-                @Override
-                public void onGetFolderItemsRsp(BluetoothDevice target, byte scope,
-                                                BluetoothAvrcpBrowseItem[] items, int status) {
-                    if (!BluetoothAvrcpController.isSuccess(status)) {
-                        Log.d(TAG, "GetFolderItems response failed");
-                        return;
-                    }
+        @Override
+        public void onGetFolderItemsRsp(BluetoothDevice target, byte scope,
+                                        BluetoothAvrcpBrowseItem[] items, int status) {
+            if (!BluetoothAvrcpController.isSuccess(status)) {
+                Log.d(TAG, "GetFolderItems response failed");
+                return;
+            }
 
-                    if (Constants.D) Log.d(TAG, "GetFolderItems response succeed");
+            if (Constants.D) Log.d(TAG, "GetFolderItems response succeed");
 
-                    switch (scope) {
-                        case BluetoothAvrcpController.SCOPE_MEDIA_PLAYER_LIST:
-                            Log.d(TAG, "case:setting Media player list");
-                            mMediaPlayers = items;
-                            mHandler.sendEmptyMessage(Constants.GOT_MEDIA_PLAYER_LIST);
-                            break;
-                        case BluetoothAvrcpController.SCOPE_NOW_PLAYING:
-                            mNowPlayingItems = items;
-                            mHandler.sendEmptyMessage(Constants.GOT_NOW_PLAYING);
-                            break;
-                        default:
-                            break;
-                    }
-                }
+            switch (scope) {
+                case BluetoothAvrcpController.SCOPE_MEDIA_PLAYER_LIST:
+                    Log.d(TAG, "case:setting Media player list");
+                    mMediaPlayers = items;
+                    mHandler.sendEmptyMessage(Constants.GOT_MEDIA_PLAYER_LIST);
+                    break;
+                case BluetoothAvrcpController.SCOPE_NOW_PLAYING:
+                    mNowPlayingItems = items;
+                    mHandler.sendEmptyMessage(Constants.GOT_NOW_PLAYING);
+                    break;
+                default:
+                    break;
+            }
+        }
 
-                @Override
-                public void onGetItemAttributesRsp(BluetoothDevice target, int[] attributes,
-                                                   String[] valueTexts, int status) {
-                }
+        @Override
+        public void onGetItemAttributesRsp(BluetoothDevice target, int[] attributes,
+                                           String[] valueTexts, int status) {
+        }
 
-                @Override
-                public void onSearchRsp(BluetoothDevice target, int numberOfItems, int status) {
-                }
+        @Override
+        public void onSearchRsp(BluetoothDevice target, int numberOfItems, int status) {
+        }
 
-                @Override
-                public void onPlayItemRsp(BluetoothDevice target, int status) {
-                    if (Constants.D) Log.d(TAG, "onPlayItemRsp");
-                }
+        @Override
+        public void onPlayItemRsp(BluetoothDevice target, int status) {
+            if (Constants.D) Log.d(TAG, "onPlayItemRsp");
+        }
 
-                @Override
-                public void onAddToNowPlayingRsp(BluetoothDevice target, int status) {
-                }
+        @Override
+        public void onAddToNowPlayingRsp(BluetoothDevice target, int status) {
+        }
 
-                @Override
-                public void onAddressedPlayerChanged(BluetoothDevice target, int playerId) {
-                }
+        @Override
+        public void onAddressedPlayerChanged(BluetoothDevice target, int playerId) {
+        }
 
-                @Override
-                public void onAvailablePlayersChanged(BluetoothDevice target) {
-                }
+        @Override
+        public void onAvailablePlayersChanged(BluetoothDevice target) {
+        }
 
-                @Override
-                public void onNowPlayingContentChanged(BluetoothDevice target) {
-                }
+        @Override
+        public void onNowPlayingContentChanged(BluetoothDevice target) {
+        }
 
-                @Override
-                public void onUIDsChanged(BluetoothDevice target) {
-                }
+        @Override
+        public void onUIDsChanged(BluetoothDevice target) {
+        }
 
-                @Override
-                public void onSetBrowsedPlayerRsp(BluetoothDevice target, int numberOfItems,
-                                                  String[] folderPath, int status) {
-                }
+        @Override
+        public void onSetBrowsedPlayerRsp(BluetoothDevice target, int numberOfItems,
+                                          String[] folderPath, int status) {
+        }
 
-            };
+    };
     public void sendPlayBtMusicBroadCast(int playStatus) {
         Intent intent = new Intent(leftLayoutChangeAction);
         intent.putExtra("mediaType", 2);
         Bundle bundle = new Bundle();
         if (mCmdController != null)
-        bundle.putString("musicName", mCmdController.getMediaTitle());
+            bundle.putString("musicName", mCmdController.getMediaTitle());
         if (playStatus == 1) {
             bundle.putBoolean("isBTMusicPlaying", true);
         } else if (playStatus == 2) {
@@ -822,9 +822,7 @@ public class BluetoothMusicModule extends BaseModule<BluetoothMusicStateListener
         }
     };
 
-//    protected Handler mHandler = "tcc897xpm01v2".equals(SystemProperties.get("ro.product.device")) ? mHandlerFake : mHandlerReal;
-    protected Handler mHandler = mHandlerReal;
-//    protected Handler mHandler = mHandlerFake;
+    protected Handler mHandler = "tcc897xpm01v2".equals(SystemProperties.get("ro.product.device")) ? mHandlerFake : mHandlerReal;
 
 
     private void playItem(byte scope, BluetoothAvrcpBrowseItem item) {
@@ -1001,9 +999,9 @@ public class BluetoothMusicModule extends BaseModule<BluetoothMusicStateListener
     };
 
     public void resume() {
-//        if("tcc897xpm01v2".equals(SystemProperties.get("ro.product.device"))) {
-//            setRealHandler();
-//        }
+        if("tcc897xpm01v2".equals(SystemProperties.get("ro.product.device"))) {
+            setRealHandler();
+        }
 
         if (null != avrcp) {
             avrcp.unregisterEventHandler();
@@ -1046,9 +1044,9 @@ public class BluetoothMusicModule extends BaseModule<BluetoothMusicStateListener
         mHandler.removeMessages(Constants.CMD_RELOAD_PROGRESS);
         mHandler.removeMessages(Constants.CMD_UPDATE_PROGRESS);
         mHandler.removeMessages(Constants.CMD_ALTERNATE_UPDATE_TIMER);
-//        if("tcc897xpm01v2".equals(SystemProperties.get("ro.product.device"))) {
-//            setFakeHandler();
-//        }
+        if("tcc897xpm01v2".equals(SystemProperties.get("ro.product.device"))) {
+            setFakeHandler();
+        }
 //        if (mCmdController != null) {
 //            mCmdController.unregisterCallback();
 //            mCmdController.clear();
@@ -1078,9 +1076,9 @@ public class BluetoothMusicModule extends BaseModule<BluetoothMusicStateListener
         if (proxy) {
             proxy = false;
         }
-//        if (!"tcc897xpm01v2".equals(SystemProperties.get("ro.product.device")) && !"tcc897xzd2sv2".equals(SystemProperties.get("ro.product.device"))) {
-//            abandonAudioFocus();
-//        }
+        if (!"tcc897xpm01v2".equals(SystemProperties.get("ro.product.device")) && !"tcc897xzd2sv2".equals(SystemProperties.get("ro.product.device"))) {
+            abandonAudioFocus();
+        }
 //        mAudioManager.unregisterMediaButtonEventReceiver(mComponentName);
     }
 
@@ -1123,7 +1121,7 @@ public class BluetoothMusicModule extends BaseModule<BluetoothMusicStateListener
 //                        setCallVolume(0);
                         streamVolume = mAudioManager.getStreamVolume(AudioManager.STREAM_MUSIC);
                         setNotificationVolume(1);
-//                        mAudioManager.setBtMusicLosesFocus(true);
+                        mAudioManager.setBtMusicLosesFocus(true);
 //                        mAudioManager.adjustStreamVolume(AudioManager.STREAM_VOICE_CALL,AudioManager.ADJUST_LOWER,AudioManager.FLAG_SHOW_UI);
                         Log.d(TAG, "AUDIOFOUCS_LOWERVOLUME" + "streamVolume = [" + streamVolume + "]" + mbLowVolume);
                     }
@@ -1145,7 +1143,7 @@ public class BluetoothMusicModule extends BaseModule<BluetoothMusicStateListener
                     }
                     mbLowVolume = false;
 //                    setCallVolume(mAudioManager.getStreamMaxVolume(AudioManager.STREAM_VOICE_CALL));
-//                    mAudioManager.setBtMusicLosesFocus(false);
+                    mAudioManager.setBtMusicLosesFocus(false);
                     setNotificationVolume(streamVolume);
                     Log.d(TAG, "AUDIOFOUCS_RESUMEVOLUME" + "streamVolume = [" + streamVolume + "]" + mbLowVolume);
 //                    mAudioManager.adjustStreamVolume(AudioManager.STREAM_VOICE_CALL,AudioManager.ADJUST_RAISE,AudioManager.FLAG_SHOW_UI);

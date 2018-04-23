@@ -7,6 +7,7 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.wifi.WifiManager;
 import android.os.Parcelable;
+import android.telephony.ServiceState;
 import android.util.Log;
 
 import com.etrans.jt.btlibrary.manager.XxConfig;
@@ -111,9 +112,9 @@ public class XxHardwareReceiver extends BroadcastReceiver {
             }
         } else if (action.equals("android.intent.action.SERVICE_STATE")) {
             Log.i("updateMobileSignal", "      TelephonyIntents.ACTION_SERVICE_STATE_CHANGED");
-//            ServiceState ss = ServiceState.newFromBundle(intent.getExtras());
-//            XxConfig.getInstance().setMobileState(ss.getState());
-//            XxNetManager.getInstance().getTelephoneManager().onServiceStateChanged(ss);
+            ServiceState ss = ServiceState.newFromBundle(intent.getExtras());
+            XxConfig.getInstance().setMobileState(ss.getState());
+            XxNetManager.getInstance().getTelephoneManager().onServiceStateChanged(ss);
         } else if (action.equals("com.etrans.launcher.phone")) {
             String sosPhone = intent.getStringExtra("sos");
             String servicePhone = intent.getStringExtra("service");

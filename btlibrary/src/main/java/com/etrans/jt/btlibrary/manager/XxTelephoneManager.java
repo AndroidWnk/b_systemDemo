@@ -115,7 +115,7 @@ public class XxTelephoneManager {
     }
 
     public int getNetworkClass() {
-//        type = getNetworkClass(mTManager.getDataNetworkType());
+         type = getNetworkClass(mTManager.getDataNetworkType());
         return type;
     }
 
@@ -125,8 +125,7 @@ public class XxTelephoneManager {
         ConnectivityManager cm = (ConnectivityManager) mContext.getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo info = cm.getActiveNetworkInfo();
         if (XxConfig.getInstance().getMobileState() != ServiceState.STATE_IN_SERVICE || info == null || info.getType() == 1) {
-//            return TelephonyManager.NETWORK_CLASS_UNKNOWN;
-            return 1;
+            return TelephonyManager.NETWORK_CLASS_UNKNOWN;
         }
 
         switch (networkType) {
@@ -135,7 +134,7 @@ public class XxTelephoneManager {
             case TelephonyManager.NETWORK_TYPE_CDMA:
             case TelephonyManager.NETWORK_TYPE_1xRTT:
             case TelephonyManager.NETWORK_TYPE_IDEN:
-//                return TelephonyManager.NETWORK_CLASS_2_G;
+                return TelephonyManager.NETWORK_CLASS_2_G;
             case TelephonyManager.NETWORK_TYPE_UMTS:
             case TelephonyManager.NETWORK_TYPE_EVDO_0:
             case TelephonyManager.NETWORK_TYPE_EVDO_A:
@@ -145,12 +144,11 @@ public class XxTelephoneManager {
             case TelephonyManager.NETWORK_TYPE_EVDO_B:
             case TelephonyManager.NETWORK_TYPE_EHRPD:
             case TelephonyManager.NETWORK_TYPE_HSPAP:
-//                return TelephonyManager.NETWORK_CLASS_3_G;
+                return TelephonyManager.NETWORK_CLASS_3_G;
             case TelephonyManager.NETWORK_TYPE_LTE:
-//                return TelephonyManager.NETWORK_CLASS_4_G;
+                return TelephonyManager.NETWORK_CLASS_4_G;
             default:
-//                return TelephonyManager.NETWORK_CLASS_UNKNOWN;
-                return 1;
+                return TelephonyManager.NETWORK_CLASS_UNKNOWN;
         }
     }
 
@@ -269,7 +267,7 @@ public class XxTelephoneManager {
             int signal = 0;
             int snr = 0;
             int s2, s3, s4;
-//            signal = signalStrength.getDbm();
+            signal = signalStrength.getDbm();
             mLevel = getLevel(signal, snr);
             type = getNetworkClass();
             MobileParams params = new MobileParams();

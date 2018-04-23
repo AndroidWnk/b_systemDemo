@@ -88,7 +88,7 @@ public class BluetoothPhoneBookModule extends BaseModule<BluetoothMusicStateList
             //全拼T9
             params.put("PY_KEY_T9", pinyinkeyT9);
             //插入到数据库
-            //TODO 判断是否存在 如果存在则不插入
+            //TODO 判断是否存在 如果存在则不插入，如果存在则更新联系人，不存在则插入
             if (queryContact(bluetoothPhoneBookInfo.getIndex() + "", newName, bluetoothPhoneBookInfo.getContactNumber()) != null) {
                 DataOperation.getInstance().updateContacts(params, bluetoothPhoneBookInfo.getIndex() + "", newName, bluetoothPhoneBookInfo.getContactNumber());
             } else {

@@ -118,7 +118,7 @@ public class XxOtherSettingManager extends XxBaseModule implements IVoiceAssist 
     }
 
     public void setVolume(float left, float right) {
-            mediaPlayer.setVolume(left, right);
+        mediaPlayer.setVolume(left, right);
     }
 
 
@@ -145,8 +145,8 @@ public class XxOtherSettingManager extends XxBaseModule implements IVoiceAssist 
         int defaultVolume = (int) (mVoiceUtils.getMaxVolume(AudioManager.STREAM_MUSIC) * 0.6);
         mVoiceUtils.setStreamVoice(AudioManager.STREAM_MUSIC, defaultVolume);
 
-//        defaultVolume = (int) (mVoiceUtils.getMaxVolume(AudioManager.STREAM_RADIO) * 0.6);
-//        mVoiceUtils.setStreamVoice(AudioManager.STREAM_RADIO, defaultVolume);
+        defaultVolume = (int) (mVoiceUtils.getMaxVolume(AudioManager.STREAM_RADIO) * 0.6);
+        mVoiceUtils.setStreamVoice(AudioManager.STREAM_RADIO, defaultVolume);
 
         defaultVolume = (int) (mVoiceUtils.getMaxVolume(AudioManager.STREAM_VOICE_CALL) * 0.6);
         mVoiceUtils.setStreamVoice(AudioManager.STREAM_VOICE_CALL, defaultVolume);
@@ -201,8 +201,8 @@ public class XxOtherSettingManager extends XxBaseModule implements IVoiceAssist 
 
         Message msg1 = mHandler.obtainMessage(XxMessage.MSG_SETTING_RE_VOICE);
         VoiceParams params1 = new VoiceParams();
-//        params1.refreshType = AudioManager.STREAM_RADIO;
-//        params1.radioVolume = getStreamVolume(AudioManager.STREAM_RADIO);
+        params1.refreshType = AudioManager.STREAM_RADIO;
+        params1.radioVolume = getStreamVolume(AudioManager.STREAM_RADIO);
         msg1.obj = params1;
         mHandler.sendMessage(msg1);
     }
@@ -257,12 +257,10 @@ public class XxOtherSettingManager extends XxBaseModule implements IVoiceAssist 
                 } else {
                     params.bMute = 1;
                 }
-            }
-//            else if (arg2 == AudioManager.STREAM_RADIO) {
-//                params.radioVolume = arg1;
-//                params.refreshType = AudioManager.STREAM_RADIO;
-//            }
-            else if (arg2 == AudioManager.STREAM_VOICE_CALL /*|| arg2 == AudioManager.STREAM_BTEARPHONE*/) {
+            } else if (arg2 == AudioManager.STREAM_RADIO) {
+                params.radioVolume = arg1;
+                params.refreshType = AudioManager.STREAM_RADIO;
+            } else if (arg2 == AudioManager.STREAM_VOICE_CALL /*|| arg2 == AudioManager.STREAM_BTEARPHONE*/) {
                 //if(arg2 == AudioManager.STREAM_VOICE_CALL) {
                 //if(arg1 !=  (mVoiceUtils.getStreamVoice(AudioManager.STREAM_BTEARPHONE))) {
                 //	mVoiceUtils.setStreamVolume(AudioManager.STREAM_VOICE_CALL, arg1, 0);

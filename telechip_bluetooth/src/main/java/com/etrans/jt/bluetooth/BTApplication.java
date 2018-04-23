@@ -24,7 +24,6 @@ import com.etrans.jt.btlibrary.module.XxAudioManager;
 import com.etrans.jt.btlibrary.utils.XxSetting;
 import com.txznet.sdk.TXZCallManager;
 import com.txznet.sdk.TXZConfigManager;
-import com.txznet.sdk.TXZTtsManager;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -60,8 +59,8 @@ public class BTApplication extends BaseApplication implements TXZConfigManager.I
         XxAudioManager.getInstance().init(appContext);
         BluetoothModule.getInstance().init(appContext);
         BluetoothPhoneBookModule.getInstance().init(appContext);
-        BluetoothPhoneModule.getInstance().init(appContext);
-        BluetoothMusicModule.getInstance().init(appContext);
+        BluetoothPhoneModule.getInstance().init(appContext);//蓝牙电话
+        BluetoothMusicModule.getInstance().init(appContext);//蓝牙音乐
 
         //
         initManager();
