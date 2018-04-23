@@ -1,16 +1,18 @@
 package com.etrans.jt.btlibrary.utils;
 
+//import android.vehicle.radio.RadioManager;//++android.jar增加部分
+
 public class XxRadioConst {
 	public class Switch {
-//		public static final int OFF = RadioManager.SWITCH_OFF;
-//		public static final int ON = RadioManager.SWITCH_ON;
+//		public static final int OFF = RadioManager.SWITCH_OFF;//++android.jar增加部分 无需用到XxRadioConst类
+//		public static final int ON = RadioManager.SWITCH_ON;//++android.jar增加部分
 	}
-	
+
 	public class Band {
 		public static final int FM = 0;
 		public static final int AM = 1;
 	}
-	
+
 	public class State {
 		public static final int OFF = 0;
 		public static final int ON = 1;
@@ -19,7 +21,7 @@ public class XxRadioConst {
 		public static final int AUTO = 4;
 		public static final int STOP = 5;
 	}
-	
+
 	public class RadioStandard {
 		public static final int FMMAXFREQ = 108000; // fm 的搜索做大频率
 		public static final int FMMINFREQ = 87500; // fm最小频率
@@ -30,7 +32,7 @@ public class XxRadioConst {
 		public static final int TRIMMINGSTEP = 5; //微调单位
 		public static final int DRF_FM_FREQ  = 9150 ;
 	}
-	
+
 	public class RadioVoiceOper {
 		public static final int NONE = 0;
 		public static final int ModifyBAND = 1;

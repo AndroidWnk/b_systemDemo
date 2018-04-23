@@ -13,7 +13,7 @@ import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.util.Log;
-//import android.vehicle.audio.AudioExManager;
+//import android.vehicle.audio.AudioExManager;//++android.jar增加部分
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -94,7 +94,7 @@ public class PhoneCallExActivity extends BaseActivity implements View.OnClickLis
     private boolean misShowDail = false;
     private long click;
     private boolean num = false;
-//    private AudioExManager audioExManager;
+//    private AudioExManager audioExManager;//++android.jar增加部分
 
 
     @Override
@@ -221,7 +221,7 @@ public class PhoneCallExActivity extends BaseActivity implements View.OnClickLis
             finish();
         }
         ButterKnife.bind(this);
-//        audioExManager = (AudioExManager) getSystemService(Context.AUDIOEX_SERVICE);
+//        audioExManager = (AudioExManager) getSystemService(Context.AUDIOEX_SERVICE);//++android.jar增加部分
 
     }
 
@@ -398,7 +398,7 @@ public class PhoneCallExActivity extends BaseActivity implements View.OnClickLis
             con.setNumber("10086");
             ((BTApplication) getApplication()).mCallToolStatusListener.onMakeCall(con);
         }
-//        audioExManager.setVoiceState(2);
+//        audioExManager.setVoiceState(2);//++android.jar增加部分
         Log.e("audioExManager", "------------setVoiceState(2)--------------");
         super.onResume();
 
@@ -423,7 +423,7 @@ public class PhoneCallExActivity extends BaseActivity implements View.OnClickLis
             ((BTApplication) getApplication()).mCallToolStatusListener.onIdle();
             Log.e("audioExManager", "------------onIdle--------------");
         }
-//        audioExManager.setVoiceState(1);
+//        audioExManager.setVoiceState(1);// 1噪音清除 2电话来电 3唤醒 //++android.jar增加部分
         Log.e("audioExManager", "------------setVoiceState(1)--------------");
         super.onPause();
         unregisterReceiver(mAnswerBtnReceiver);
